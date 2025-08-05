@@ -259,7 +259,7 @@ input.form-check-input:checked {
 
 
 
-@media (max-width: 576px) {
+@media (max-width: 992px) {
   .cart-item-box {
     transform: scale(0.85);
     transform-origin: top left;
