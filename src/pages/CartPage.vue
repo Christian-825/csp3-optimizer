@@ -260,15 +260,11 @@ input.form-check-input:checked {
 
 
 @media (max-width: 576px) {
-  .cart-item-box-wrapper {
-    overflow-x: auto;
-    width: 100%;
-  }
-
   .cart-item-box {
     transform: scale(0.85);
     transform-origin: top left;
     width: max-content;
   }
 }
+
 </style>
