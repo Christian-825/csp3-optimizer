@@ -121,43 +121,44 @@ onMounted(() => {
       <div
         v-for="item in cartItems"
         :key="item._id"
-        class="cart-item-box d-flex border border-dark mb-4 p-4 align-items-center w-50"
+        class="cart-item-box-wrapper"  
       >
-        <!-- Checkbox -->
-        <input
-          type="checkbox"
-          class="form-check-input me-3"
-          :value="item._id"
-          v-model="selectedItems"
-        />
+        <div
+          class="cart-item-box d-flex border border-dark mb-4 p-4 align-items-center w-50"
+        >
+          <!-- Checkbox -->
+          <input
+            type="checkbox"
+            class="form-check-input me-3"
+            :value="item._id"
+            v-model="selectedItems"
+          />
 
-        <img :src="item.image" alt="Product" class="cart-img me-4" />
+          <img :src="item.image" alt="Product" class="cart-img me-4" />
 
-        <div class="flex-grow-1">
-          <h5 class="mb-1">{{ item.productName }}</h5>
-          <p class="mb-1"><strong>Size:</strong> {{ item.size }}</p>
+          <div class="flex-grow-1">
+            <h5 class="mb-1">{{ item.productName }}</h5>
+            <p class="mb-1"><strong>Size:</strong> {{ item.size }}</p>
 
-          <div class="d-flex align-items-center mt-2">
-            <select
-              class="form-select me-3"
-              v-model.number="item.quantity"
-              @change="updateQuantity(item.productId._id, item.quantity, String(item.size))"
-              
+            <div class="d-flex align-items-center mt-2">
+              <select
+                class="form-select me-3"
+                v-model.number="item.quantity"
+                @change="updateQuantity(item.productId._id, item.quantity, String(item.size))"
+              >
+                <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+              </select>
 
-
-            >
-              <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
-            </select>
-
-            <div class="price-info fw-bold">
-              ₱{{ (item.price * item.quantity).toLocaleString() }}
+              <div class="price-info fw-bold">
+                ₱{{ (item.price * item.quantity).toLocaleString() }}
+              </div>
             </div>
           </div>
-        </div>
 
-        <button class="btn text-dark fs-4 ms-3" @click="removeItem(item._id)">
-          X
-        </button>
+          <button class="btn text-dark fs-4 ms-3" @click="removeItem(item._id)">
+            X
+          </button>
+        </div>
       </div>
 
       <!-- CLEAR CART -->
@@ -195,6 +196,7 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .cart-img {
@@ -255,56 +257,18 @@ input.form-check-input:checked {
   border-radius: 4px;
 }
 
-@media (max-width: 992px) {
+
+
+@media (max-width: 576px) {
+  .cart-item-box-wrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+
   .cart-item-box {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100% !important;
-  }
-
-  .cart-img {
-    width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-    margin-bottom: 1rem;
-  }
-
-  .cart-item-box .flex-grow-1 {
-    width: 100%;
-  }
-
-  .cart-item-box .d-flex {
-    flex-direction: column;
-    align-items: flex-start !important;
-  }
-
-  select.form-select {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .price-info {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  button.btn {
-    align-self: flex-end;
-  }
-
-  .container {
-    padding: 1rem;
-  }
-
-  .d-flex.justify-content-between.align-items-center {
-    flex-direction: column;
-    align-items: stretch !important;
-    gap: 1rem;
-  }
-
-  .d-flex.justify-content-end.mt-3.mb-4 {
-    justify-content: center !important;
+    transform: scale(0.85);
+    transform-origin: top left;
+    width: max-content;
   }
 }
-
 </style>
