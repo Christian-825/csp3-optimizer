@@ -263,8 +263,13 @@ input.form-check-input:checked {
   .cart-item-box {
     transform: scale(0.85);
     transform-origin: top left;
-    width: max-content;
+    width: 100% !important; /* Stay within container */
+  }
+
+  .container {
+    overflow-x: hidden; /* Prevent scrollbars if needed */
   }
 }
+
 
 </style>
